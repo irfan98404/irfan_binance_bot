@@ -1,0 +1,75 @@
+Binance Futures Order Bot – CLI Based
+
+Name: Mohammed Irfan
+Assignment: Binance Futures Order Bot
+Date: 9/1/2026
+
+1. Introduction
+
+This project implements a CLI-based trading bot for Binance USDT-M Futures.
+The bot supports Market and Limit orders along with advanced strategies such as OCO and TWAP.
+The focus is on modular design, input validation, and structured logging.
+
+2. Project Architecture
+
+The system follows a modular structure, with each order type implemented as a separate Python module.
+A centralized logger is used to ensure consistent logging across all modules.
+
+Project Structure:
+binance_bot/
+├── src/
+│   ├── market_orders.py
+│   ├── limit_orders.py
+│   ├── logger.py
+│   └── advanced/
+│       ├── oco.py
+│       └── twap.py
+├── bot.log
+├── README.md
+└── report.pdf
+
+
+3. Implemented Features
+
+Market Order
+Executes instantly at market price
+Validates inputs
+Logs execution
+
+Command:
+python src/market_orders.py BTCUSDT BUY 0.01
+
+4.Limit Order
+Places order at a specified price
+Logs order placement
+
+Command:
+python src/limit_orders.py BTCUSDT SELL 0.01 45000
+
+5.OCO Order
+OCO places take-profit and stop-loss orders simultaneously.
+When one executes, the other is cancelled.
+
+Command:
+python src/advanced/oco.py BTCUSDT SELL 0.01 45000 38000
+
+6.TWAP Order
+TWAP splits a large order into multiple smaller orders executed at fixed intervals to reduce market impact.
+
+Command:
+python src/advanced/twap.py BTCUSDT BUY 1 5 2
+
+7.Validation & Logging
+All inputs are validated before execution
+A centralized logging system records:
+Order execution
+Errors
+Logs are stored in bot.log with timestamps
+
+8.API Mode
+The bot runs in mock mode for safety.
+It can be easily connected to Binance Futures API or Testnet by replacing mock logic and adding API keys.
+
+9.Conclusion
+This project demonstrates a clean and extensible approach to building automated trading systems.
+Advanced order strategies and structured logging improve reliability and maintainability.
