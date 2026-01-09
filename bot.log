@@ -1,0 +1,17 @@
+2026-01-09 11:28:50,175 | INFO | Market Order Executed: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'status': 'FILLED', 'price': 'MARKET_PRICE', 'time': '2026-01-09T05:58:50.175243'}
+2026-01-09 11:29:17,131 | ERROR | Invalid symbol. Must end with USDT (e.g., BTCUSDT)
+2026-01-09 11:30:00,717 | INFO | Limit Order Placed: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'price': 45000.0, 'status': 'NEW', 'time': '2026-01-09T06:00:00.717515'}
+2026-01-09 11:30:17,184 | ERROR | Quantity must be a positive number
+2026-01-09 11:38:14,991 | INFO | Ellipsis
+2026-01-09 11:38:14,991 | ERROR | Ellipsis
+2026-01-09 11:39:39,797 | INFO | Ellipsis
+2026-01-09 11:39:39,797 | ERROR | Ellipsis
+2026-01-09 11:39:39,797 | INFO | Market Order Executed: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'status': 'FILLED', 'price': 'MARKET_PRICE', 'time': '2026-01-09T06:09:39.797291'}
+2026-01-09 11:43:49,734 | INFO | OCO Order Placed: {'symbol': 'BTCUSDT', 'side': 'SELL', 'quantity': 0.01, 'take_profit': 45000.0, 'stop_loss': 38000.0, 'status': 'OCO_PLACED', 'time': '2026-01-09T06:13:49.734373'}
+2026-01-09 11:45:02,331 | INFO | TWAP Started | Symbol=BTCUSDT, Side=BUY, TotalQty=1.0, Slices=5, Interval=2s
+2026-01-09 11:45:02,331 | INFO | TWAP Order Executed: {'slice': 1, 'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.2, 'status': 'FILLED', 'time': '2026-01-09T06:15:02.331657'}
+2026-01-09 11:45:04,335 | INFO | TWAP Order Executed: {'slice': 2, 'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.2, 'status': 'FILLED', 'time': '2026-01-09T06:15:04.335897'}
+2026-01-09 11:45:06,337 | INFO | TWAP Order Executed: {'slice': 3, 'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.2, 'status': 'FILLED', 'time': '2026-01-09T06:15:06.337419'}
+2026-01-09 11:45:08,340 | INFO | TWAP Order Executed: {'slice': 4, 'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.2, 'status': 'FILLED', 'time': '2026-01-09T06:15:08.340855'}
+2026-01-09 11:45:10,343 | INFO | TWAP Order Executed: {'slice': 5, 'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.2, 'status': 'FILLED', 'time': '2026-01-09T06:15:10.343048'}
+2026-01-09 11:45:10,343 | INFO | TWAP Execution Completed
