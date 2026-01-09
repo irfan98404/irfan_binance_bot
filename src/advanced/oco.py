@@ -1,11 +1,8 @@
 import sys
-from datetime import datetime
 import os
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from logger import setup_logger
-
-
+from binance_client import get_client
 
 # ---------------- LOGGING SETUP ----------------
 logger = setup_logger()
@@ -13,7 +10,7 @@ logger = setup_logger()
 # ---------------- VALIDATION ----------------
 def validate_inputs(symbol, side, quantity, take_profit, stop_loss):
     if not symbol.endswith("USDT"):
-        raise ValueError("Invalid symbol. Must end with USDT")
+        raise ValueError("Invalid symbol")
 
     if side not in ["BUY", "SELL"]:
         raise ValueError("Side must be BUY or SELL")
@@ -28,23 +25,41 @@ def validate_inputs(symbol, side, quantity, take_profit, stop_loss):
     return symbol, side, quantity, take_profit, stop_loss
 
 
-# ---------------- MOCK OCO ORDER ----------------
+# ---------------- REAL OCO (FUTURES LOGICAL) ----------------
 def place_oco_order(symbol, side, quantity, take_profit, stop_loss):
-    oco_order = {
-        "symbol": symbol,
-        "side": side,
-        "quantity": quantity,
-        "take_profit": take_profit,
-        "stop_loss": stop_loss,
-        "status": "OCO_PLACED",
-        "time": datetime.utcnow().isoformat()
-    }
+    client = get_client()
 
-    logger.info(f"OCO Order Placed: {oco_order}")
+    opposite_side = "SELL" if side == "BUY" else "BUY"
 
-    print("✅ OCO Order Placed Successfully")
-    print("Take Profit Order:", take_profit)
-    print("Stop Loss Order:", stop_loss)
+    # Take Profit Order
+    tp_order = client.futures_create_order(
+        symbol=symbol,
+        side=opposite_side,
+        type="TAKE_PROFIT_MARKET",
+        stopPrice=take_profit,
+        closePosition=True
+    )
+
+    # Stop Loss Order
+    sl_order = client.futures_create_order(
+        symbol=symbol,
+        side=opposite_side,
+        type="STOP_MARKET",
+        stopPrice=stop_loss,
+        closePosition=True
+    )
+
+    logger.info(f"OCO Orders Placed | TP: {tp_order} | SL: {sl_order}")
+
+    print("✅ OCO Orders Placed Successfully")
+    print("✅ OCO Orders Placed Successfully")
+
+    print("Take Profit Order Response:")
+    print(tp_order)
+
+    print("Stop Loss Order Response:")
+    print(sl_order)
+
 
 
 # ---------------- MAIN ----------------
@@ -63,6 +78,7 @@ if __name__ == "__main__":
             sys.argv[4],
             sys.argv[5]
         )
+
         place_oco_order(symbol, side, quantity, tp, sl)
 
     except Exception as e:
